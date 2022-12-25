@@ -15,6 +15,7 @@ export default App;
 const Login: FC = () => {
   const [emailActive, setEmailActive] = useState<boolean>(false)
   const [passwordActive, setPasswordActive] = useState<boolean>(false)
+  const [showPassword, setShowPassword] = useState<boolean>(false)
 
   function ActiveCheck(value: string, field: string) {
     if (field == "password") {
@@ -83,7 +84,7 @@ const Login: FC = () => {
 							Password
 						</label>
 						<input
-							type="password"
+							type={showPassword ? 'text' : 'password'}
 							onChange={(e) => {
 								ActiveCheck(e.target.value, 'password');
 								validatePassword(e.target.value);
@@ -92,6 +93,9 @@ const Login: FC = () => {
 							className="input"
 							placeholder=""
 						/>
+            <span className='toggle-password' onMouseOut={() => setShowPassword(false)} onMouseOver={() => setShowPassword(true)}>
+              {showPassword ? '👀' : '🙈'}
+            </span>
 					</div>
 
 					<div className="strength">
